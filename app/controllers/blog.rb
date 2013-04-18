@@ -12,6 +12,11 @@ RobbinSite.controllers :blog do
     render 'blog/note'
   end
 
+  get :reprint, :map => '/reprint' do
+    @blogs = Blog.where(:category => 'reprint').order('content_updated_at DESC').page(params[:page])
+    render 'blog/reprint'
+  end
+
   get :tag_cloud, :map => '/tag' do
     render 'blog/tag_cloud'
   end
